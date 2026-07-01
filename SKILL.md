@@ -128,9 +128,10 @@ Bootstrap 完成后，执行「协议初始化」流程（阶段 1-2），进入
 **触发**：「收录 [内容]」「保存到藏阁」「记录」
 
 **Agent 执行**：直接用 `write_file` 写入 Inbox，不需要脚本。
-1. 先判断内容类型，向用户确认：「收入藏阁 → 【摘】收录 / 【念】灵感 / 【随】随笔？」，也可以直接说命令如 `收录【念】内容描述`
-2. 确认后，文件路径：`02 养境（知识）/01 藏阁/01 Inbox/【类型】标题.md`
-3. YAML frontmatter（Obsidian Properties 扁平键值对，禁止嵌套）：
+1. 先确认收录策略：「全文收入 / AI摘要（默认） / 仅索引？」
+2. 确认后生成文件名：【类型】标题.md。类型从念/摘/事/梦/感/随/文/对/白/图 中选最匹配的，用户可直接指定如 `收录【念】`
+3. 文件路径：`02 养境（知识）/01 藏阁/01 Inbox/【类型】标题.md`
+4. YAML frontmatter（Obsidian Properties 扁平键值对，禁止嵌套）：
 
 ```yaml
 ---
@@ -138,7 +139,7 @@ status: 待发展 | 共创中 | 成卷 | 已归档
 type: 念 | 摘 | 事 | 梦 | 感 | 随 | 文 | 对 | 白 | 图
 resource_url:        ← 仅当有真实 URL 时保留，空值则删除整行
 resource_capture_time:
-resource_policy:
+resource_policy: Index | Knowledge | Archive  ← 收录策略
 tags:
 publish_date:
 confidence:

@@ -58,11 +58,17 @@ AI 帮你走得更远。但它不替你走出第一步。
 
 ### 第 1 步：确认路径
 
-询问用户 Obsidian Vault 的路径。如果用户未指定，使用当前工作目录。
+询问用户 Obsidian Vault 的存储位置：
 
 ```
-请指定 Obsidian Vault 路径（留空使用当前目录）：
+请指定文境 Vault 的存放路径（留空则在 Documents 下自动创建 `WenjingVault`）：
 ```
+
+- 用户指定路径 → 使用该路径
+- 用户留空 → 在 `~/Documents/WenjingVault`（Windows: `C:\Users\<user>\Documents\WenjingVault`）自动创建
+- 如果路径已存在且是一个 Obsidian Vault（含 `.obsidian/` 目录），则进入**更新模式**：跳过目录创建，仅同步最新的模板文件
+
+不覆盖已有 Vault 中的用户数据。只新增/更新模板和协议文档。
 
 ### 第 2 步：创建目录结构
 

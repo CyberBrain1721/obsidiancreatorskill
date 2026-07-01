@@ -231,7 +231,7 @@ confidence:
 
 ## 四、文境看板
 
-两个动态仪表盘：`文境看板.html`（全貌）+ `文境速览.html`（精简）。
+两个动态仪表盘：`文境看板.html`（全貌，浏览器）+ `文境速览.canvas`（Obsidian 原生，wiki 可点）。
 
 - **手动刷新**：说「刷新看板」→ 运行 `scripts/refresh_dashboard.py`
 - **自动刷新**：Bootstrap 时设置的 Cron job，默认每天一次
@@ -286,7 +286,7 @@ confidence:
 | Agent 入口协议 | `04 Agent入口/` |
 | 境层知识索引 | `02 养境（知识）/境层知识索引.md` |
 | 看板 | `文境看板.html`（Vault 根目录） |
-| 速览 | `文境速览.html`（Vault 根目录） |
+| 速览 | `文境速览.canvas`（Vault 根目录） |
 
 ## 八、核心原则
 

@@ -259,6 +259,9 @@ def update_speedview(vault_path, inbox, juan, dian, vols):
     return True
 
 
+from generate_canvas import generate_canvas
+
+
 def main():
     vault_path = get_vault_path()
     print(f"Vault: {vault_path}")
@@ -284,6 +287,11 @@ def main():
         print(f"  ✓ 速览已刷新")
     else:
         print("  ⚠ 速览更新跳过")
+
+    if generate_canvas(vault_path):
+        print(f"  ✓ Canvas 速览已生成")
+    else:
+        print("  ⚠ Canvas 生成跳过")
 
 
 if __name__ == "__main__":

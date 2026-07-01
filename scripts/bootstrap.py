@@ -95,7 +95,13 @@ def bootstrap(vault_path):
     )
     print(f"  ✓ Obsidian 配置已写入")
 
-    print(f"\n文境已就绪。重启 Obsidian 后打开 文境看板.html。")
+    # ---- 5. 生成 Canvas 速览 ----
+    sys.path.insert(0, str(script_dir / "scripts"))
+    from generate_canvas import generate_canvas
+    generate_canvas(str(vault))
+    print(f"  ✓ Canvas 速览已生成")
+
+    print(f"\n文境已就绪。重启 Obsidian 后打开 文境速览.canvas 或 文境看板.html。")
 
 
 if __name__ == "__main__":

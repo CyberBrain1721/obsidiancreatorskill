@@ -12,21 +12,10 @@ from pathlib import Path
 
 
 def get_vault_path():
-    """从环境变量或默认路径获取 Vault 根目录"""
+    """从环境变量获取 Vault 根目录，回退到当前工作目录"""
     vault = os.environ.get("WENJING_VAULT", "")
     if vault and os.path.isdir(vault):
         return vault
-    # 回退：从脚本位置推断（scripts/ → wenjing/ → skills/ → hermes/）
-    script_dir = Path(__file__).parent
-    # 尝试常见位置
-    candidates = [
-        script_dir.parent.parent.parent / "文境Vault",
-        Path.cwd(),
-    ]
-    for c in candidates:
-        inbox = c / "02 养境（知识）" / "01 藏阁" / "01 Inbox"
-        if inbox.is_dir():
-            return str(c)
     return str(Path.cwd())
 
 

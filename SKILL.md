@@ -287,6 +287,7 @@ confidence:
 | 境层知识索引 | `02 养境（知识）/境层知识索引.md` |
 | 看板 | `文境看板.html`（Vault 根目录） |
 | 速览 | `文境速览.canvas`（Vault 根目录） |
+| AGENTS.md | Vault 根目录（Codex/Claude Code/WB 通用入口） |
 
 ## 八、核心原则
 

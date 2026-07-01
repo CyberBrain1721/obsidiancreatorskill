@@ -95,7 +95,12 @@ def bootstrap(vault_path):
     )
     print(f"  ✓ Obsidian 配置已写入")
 
-    # ---- 5. 生成 Canvas 速览 ----
+    # ---- 5. 写入 AGENTS.md（Codex/Claude Code/WorkBuddy 通用入口） ----
+    agents_src = skill_dir / "templates" / "AGENTS.md"
+    if agents_src.is_file():
+        shutil.copy2(agents_src, vault / "AGENTS.md")
+
+    # ---- 6. 生成 Canvas 速览 ----
     sys.path.insert(0, str(script_dir / "scripts"))
     from generate_canvas import generate_canvas
     generate_canvas(str(vault))

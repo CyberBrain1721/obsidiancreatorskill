@@ -99,8 +99,8 @@ def count_dian(vault_path):
     return counts
 
 
-def update_html(vault_path, inbox_stats, juan_count, guizang_stats, dian_stats):
-    """更新看板 HTML 中的动态数据"""
+def update_html(vault_path):
+    """更新看板 HTML 中的状态日期"""
     html_path = Path(vault_path) / "文境看板.html"
     if not html_path.is_file():
         print(f"✗ 看板文件不存在: {html_path}")
@@ -109,73 +109,9 @@ def update_html(vault_path, inbox_stats, juan_count, guizang_stats, dian_stats):
     html = html_path.read_text(encoding="utf-8", errors="ignore")
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
 
-    # 替换 Vault 名称（用于 obsidian:// 链接）
+    # 替换 Vault 名称
     vault_name = Path(vault_path).name
     html = html.replace("VAULT_NAME", vault_name)
-
-    # 替换藏阁统计
-    html = re.sub(
-        r'id="inbox-count">\d+<',
-        f'id="inbox-count">{inbox_stats["total"]}<',
-        html
-    )
-    # 摘
-    html = re.sub(
-        r'(<div class="stat"><div class="num">)\d+(</div><div class="label">摘)',
-        rf'\g<1>{inbox_stats["摘"]}\g<2>',
-        html
-    )
-    # 念
-    html = re.sub(
-        r'(<div class="stat"><div class="num">)\d+(</div><div class="label">念)',
-        rf'\g<1>{inbox_stats["念"]}\g<2>',
-        html
-    )
-    # other
-    html = re.sub(
-        r'(<div class="stat"><div class="num">)\d+(</div><div class="label">文/对/事/课/随)',
-        rf'\g<1>{inbox_stats["other"]}\g<2>',
-        html
-    )
-
-    # 卷
-    html = re.sub(
-        r'id="juan-count">\d+<',
-        f'id="juan-count">{juan_count}<',
-        html
-    )
-
-    # 归藏
-    html = re.sub(
-        r'id="guizang-count">\d+<',
-        f'id="guizang-count">{guizang_stats["total"]}<',
-        html
-    )
-
-    # 典阁
-    html = re.sub(
-        r'id="dian-count">\d+<',
-        f'id="dian-count">{dian_stats["total"]}<',
-        html
-    )
-    # 创作体系
-    html = re.sub(
-        r'(<div class="stat"><div class="num">)\d+(</div><div class="label">创作体系)',
-        rf'\g<1>{dian_stats["创作体系"]}\g<2>',
-        html
-    )
-    # 技术知识
-    html = re.sub(
-        r'(<div class="stat"><div class="num">)\d+(</div><div class="label">技术知识)',
-        rf'\g<1>{dian_stats["技术知识"]}\g<2>',
-        html
-    )
-    # 法律/客观
-    html = re.sub(
-        r'(<div class="stat"><div class="num">)\d+(</div><div class="label">法律/客观)',
-        rf'\g<1>{dian_stats["法律客观"]}\g<2>',
-        html
-    )
 
     # 更新状态日期
     html = re.sub(
@@ -276,7 +212,7 @@ def main():
     print(f"  归藏: {guizang['total']}")
     print(f"  典阁: {dian['total']} (创作{dian['创作体系']} 技术{dian['技术知识']} 法律客观{dian['法律客观']})")
 
-    if update_html(vault_path, inbox, juan, guizang, dian):
+    if update_html(vault_path):
         now = datetime.now().strftime("%Y-%m-%d %H:%M")
         print(f"  ✓ 看板已刷新 ({now})")
     else:

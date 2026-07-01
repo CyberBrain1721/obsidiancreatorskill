@@ -135,14 +135,30 @@ Agent 入口文档（04 Agent入口/）在 Bootstrap 阶段不需要创建——
 
 运行 `scripts/setup_obsidian.py` 自动完成：
 - 开启推荐的核心插件（文件浏览器、图谱、反向链接、Canvas 等 18 项）
-- 下载并安装 7 个社区插件（Startpage / HTML Viewer+ / Select Folder / Editing Toolbar / Full Calendar / Style Settings / PDF+）
+- 下载并安装 7 个社区插件
 - 启用社区插件模式
 
 ```bash
 python scripts/setup_obsidian.py "VAULT_PATH"
 ```
 
-需要网络连接。安装完成后提示用户重启 Obsidian。
+需要网络连接。**如果脚本超时（GitHub 下载慢）**，跳过自动安装，改为手动引导用户：
+
+```
+⚠ 自动安装超时。请手动安装以下 7 个 Obsidian 插件：
+
+1. Startpage       → 搜索 "Startpage" 或 https://github.com/kuzzh/obsidian-startpage
+2. HTML Viewer+    → 搜索 "HTML Viewer" 或 https://github.com/kuaile1407/html-viewer-plus
+3. Select Folder   → 搜索 "Select Folder"
+4. Editing Toolbar → 搜索 "Editing Toolbar"
+5. Full Calendar   → 搜索 "Full Calendar"
+6. Style Settings  → 搜索 "Style Settings"
+7. PDF+            → 搜索 "PDF+"
+
+安装方法：Obsidian → Settings → Community plugins → Browse → 搜索 → Install → Enable
+```
+
+核心插件配置仍由脚本写入（`core-plugins.json`），不受网络影响。
 
 ### 第 5 步：设置看板刷新
 

@@ -91,38 +91,31 @@ AI 帮你走得更远。但它不替你走出第一步。
 - 用户留空 → 在 `~/Documents/WenjingVault`（Windows: `C:\Users\<user>\Documents\WenjingVault`）自动创建
 - 路径已存在且含 `.obsidian/` → **更新模式**：跳过目录创建，仅同步最新模板文件
 
-### 第 2 步：创建目录结构
+### 第 2 步：一键 Bootstrap
 
-```
-01 悟道（系统）/01 山门/、02 境志/
-02 养境（知识）/00 知识目录/、01 藏阁/01 Inbox/、02 典阁/01 Library/
-03 成卷（项目）/
-04 Agent入口/
-05 归藏（存档）/01 成卷归档/、02 养境归档/、03 典藏归档/
+运行 `scripts/bootstrap.py`，一次性完成目录创建、种子文档写入、插件安装、Obsidian 配置：
+
+```bash
+python scripts/bootstrap.py "VAULT_PATH"
 ```
 
-### 第 3 步：写入种子文档
-
-按 `templates/` 目录一一写入 Vault。包括道/境/卷/归藏/Agent入口全部文档 + 看板 HTML。Agent 入口文档写入 `04 Agent入口/`。
-
-### 第 4 步：配置 Obsidian
-
-1. 写入核心插件配置（`core-plugins.json`）——开启推荐的核心插件
-2. 将 `plugins/` 目录下的 7 个插件整体复制到 `.obsidian/plugins/`：
-
+输出示例：
 ```
-cp -r plugins/* .obsidian/plugins/
+Vault: C:\Users\...\WenjingVault
+
+  ✓ 目录结构已创建
+  ✓ 16 个种子文档已写入
+  ✓ 7 个插件已安装
+  ✓ Obsidian 配置已写入
+
+文境已就绪。重启 Obsidian 后打开 文境看板.html。
 ```
 
-3. 写入 `community-plugins.json` 启用所有 7 个插件
-
-**零网络依赖**。插件文件已捆在 Skill 仓库中，本地拷贝即可。
-
-### 第 5 步：设置看板刷新
+### 第 3 步：设置看板刷新
 
 Cron job 默认每天一次运行 `scripts/refresh_dashboard.py`。
 
-### 第 6 步：进入协议初始化
+### 第 4 步：进入协议初始化
 
 Bootstrap 完成后，执行「协议初始化」流程（阶段 1-2），进入共创模式。
 

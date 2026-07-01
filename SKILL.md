@@ -107,27 +107,16 @@ AI 帮你走得更远。但它不替你走出第一步。
 
 ### 第 4 步：配置 Obsidian
 
-先写入核心插件配置（`core-plugins.json`）——无需网络。
-
-社区插件采用**引导模式**：
+1. 写入核心插件配置（`core-plugins.json`）——开启推荐的核心插件
+2. 将 `plugins/` 目录下的 7 个插件整体复制到 `.obsidian/plugins/`：
 
 ```
-请在 Obsidian 中安装以下 7 个插件：
-
-Settings → Community plugins → 关闭 Restricted mode → Browse
-
-1. 搜索 "Startpage"     → Install → Enable
-2. 搜索 "HTML Viewer"   → Install → Enable
-3. 搜索 "Select Folder" → Install → Enable
-4. 搜索 "Editing Toolbar" → Install → Enable
-5. 搜索 "Full Calendar" → Install → Enable
-6. 搜索 "Style Settings" → Install → Enable
-7. 搜索 "PDF+"          → Install → Enable
-
-完成后说「插件装好了」
+cp -r plugins/* .obsidian/plugins/
 ```
 
-Obsidian 内置的社区插件浏览器走 Obsidian CDN，不受 GitHub raw 网络限制。
+3. 写入 `community-plugins.json` 启用所有 7 个插件
+
+**零网络依赖**。插件文件已捆在 Skill 仓库中，本地拷贝即可。
 
 ### 第 5 步：设置看板刷新
 
